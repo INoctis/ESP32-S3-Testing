@@ -47,8 +47,9 @@ binary_sensor:
       inverted: True
     name: Button
     on_press:
-      - light.toggle: red_led
       - light.toggle: yellow_led
+      - delay: 5s
+      - light.toggle: red_led
 
 
 # https://esphome.io/automations/actions/
