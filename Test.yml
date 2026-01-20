@@ -48,7 +48,7 @@ binary_sensor:
     name: Button
     on_press:
       - light.toggle: red_led
-      - delay: 2s
+      # - delay: 2s
       - light.toggle: yellow_led
 
 
