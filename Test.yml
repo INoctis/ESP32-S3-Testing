@@ -1,5 +1,3 @@
-captive_portal:
-  
 sensor:
   - platform: dht
     model: "DHT11"
