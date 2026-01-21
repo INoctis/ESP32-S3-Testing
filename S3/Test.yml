@@ -15,17 +15,17 @@ sensor:
       #   - below: 50.0
       #     then:
       #       - switch.turn_off: dehumidifier1
-    update_interval: 10s
+    update_interval: 30s
 
-  - platform: dallas_temp
-    name: "DS18B20 Temperature"
-    update_interval: 5s
-    # one_wire_id: OWTemp
+#   - platform: dallas_temp
+#     name: "DS18B20 Temperature"
+#     update_interval: 5s
+#     one_wire_id: OWTemp
 
-one_wire:
-  - platform: gpio
-    pin: GPIO13
-    # id: OWTemp
+# one_wire:
+#   - platform: gpio
+#     pin: GPIO13
+#     id: OWTemp
 
 light:
   - platform: monochromatic
