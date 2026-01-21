@@ -20,12 +20,12 @@ sensor:
   - platform: dallas_temp
     name: "DS18B20 Temperature"
     update_interval: 5s
-    one_wire_id: OWTemp
+    # one_wire_id: OWTemp
 
 one_wire:
   - platform: gpio
     pin: GPIO13
-    id: OWTemp
+    # id: OWTemp
 
 light:
   - platform: monochromatic
