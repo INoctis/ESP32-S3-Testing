@@ -35,7 +35,7 @@ output:
 
   - platform: ledc
     id: output_component2
-    pin: GPIO48
+    pin: GPIO14
 
 binary_sensor:
   - platform: gpio
