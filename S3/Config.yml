@@ -1,0 +1,48 @@
+# These substitutions allow the end user to override certain values
+substitutions:
+  name: "esp32-s3-8455dc"
+  friendly_name: "ESP32-S3-8455DC"
+
+esphome:
+  name: "${name}"
+  # Friendly names are used where appropriate in Home Assistant
+  friendly_name: "${friendly_name}"
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: esp-idf
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  encryption:
+    key: !secret api_key
+
+ota:
+  - platform: esphome
+    password: !secret wifi_password
+
+web_server:
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "${name}"
+    password: !secret wifi_password
+
+captive_portal:
+
+packages:
+  # # shorthand form github://username/repository/[folder/]file-path.yml[@branch-or-tag]
+  # remote_package_shorthand: github://INoctis/ESP32-S3-Testing/Test.yml
+  remote_package_files:
+    url: https://github.com/INoctis/ESP32-S3-Testing/
+    files: Test.yml # optional; if not specified, all files will be included
+    ref: main # optional
+    refresh: 60s # optional
