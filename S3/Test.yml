@@ -1,17 +1,19 @@
 substitutions:
   upd_frq: 60s
 
-# infrared:
-#   # IR transmitter instance
-#   - platform: ir_rf_proxy
-#     name: IR Proxy Transmitter
-#     id: ir_proxy_tx
-#     remote_transmitter_id: ir_tx
-#   # IR receiver instance
-#   - platform: ir_rf_proxy
-#     name: IR Proxy Receiver
-#     id: ir_proxy_rx
-#     remote_receiver_id: ir_rx
+remote_transmitter:
+  pin: GPIO12
+  carrier_duty_percent: 50%
+
+button:
+  - platform: template
+    name: Raw Code Power Button
+    on_press:
+      - remote_transmitter.transmit_raw:
+          code: [0000, 006D, 0021, 0000, 0016, 003C, 0016, 0013, 0016, 003C, 0016, 0013, 0016, 0013, 0016, 003C, 0016, 0013, 0016, 003C, 0016, 0013, 0016,
+                 003C, 0016, 0013, 0016, 003C, 0016, 003C, 0015, 0013, 0016, 003C, 0016, 0013, 0016, 0013, 0016, 003C, 0016, 0013, 0016, 0013, 0016, 003C, 
+                 0016, 0013, 0016, 0013, 0016, 0013, 0016, 003C, 0016, 0013, 0016, 003C, 0016, 003C, 0016, 0013, 0016, 003C, 0016, 003C, 0016, 003C, 0016, 0099]
+  
 
 remote_receiver:
   pin: GPIO13
@@ -95,7 +97,11 @@ binary_sensor:
       inverted: True
     name: Button
     on_press:
-      - component.update: sensor_dht11
+      - remote_transmitter.transmit_raw:
+          code: [0000, 006D, 0021, 0000, 0016, 003C, 0016, 0013, 0016, 003C, 0016, 0013, 0016, 0013, 0016, 003C, 0016, 0013, 0016, 003C, 0016, 0013, 0016,
+                 003C, 0016, 0013, 0016, 003C, 0016, 003C, 0015, 0013, 0016, 003C, 0016, 0013, 0016, 0013, 0016, 003C, 0016, 0013, 0016, 0013, 0016, 003C, 
+                 0016, 0013, 0016, 0013, 0016, 0013, 0016, 003C, 0016, 0013, 0016, 003C, 0016, 003C, 0016, 0013, 0016, 003C, 0016, 003C, 0016, 003C, 0016, 0099]
+      # - component.update: sensor_dht11
       # - light.toggle: red_led
       # - delay: 0.5s
       # - light.toggle: yellow_led
