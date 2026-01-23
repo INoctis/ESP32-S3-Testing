@@ -84,11 +84,11 @@ sensor:
 #     id: output_component2
 #     pin: GPIO14
 
-button:
-  - platform: template
-    name: "Template Button"
-    on_press:
-      - logger.log: Button Pressed
+# button:
+#   - platform: template
+#     name: "Template Button"
+#     on_press:
+#       - logger.log: Button Pressed
 
 binary_sensor:
   - platform: gpio
