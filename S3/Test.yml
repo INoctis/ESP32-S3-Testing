@@ -51,7 +51,8 @@ sensor:
 
 remote_receiver:
   pin: GPIO13
-  dump: all
+  dump:
+  - rc_switch
   # id: ir_receiver
   
 
