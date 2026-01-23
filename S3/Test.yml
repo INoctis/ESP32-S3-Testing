@@ -37,17 +37,17 @@ sensor:
       #       - switch.turn_off: dehumidifier1
     update_interval: ${upd_frq}
 
-infrared:
-  # IR transmitter instance
-  - platform: ir_rf_proxy
-    name: IR Proxy Transmitter
-    id: ir_proxy_tx
-    remote_transmitter_id: ir_tx
-  # IR receiver instance
-  - platform: ir_rf_proxy
-    name: IR Proxy Receiver
-    id: ir_proxy_rx
-    remote_receiver_id: ir_rx
+# infrared:
+#   # IR transmitter instance
+#   - platform: ir_rf_proxy
+#     name: IR Proxy Transmitter
+#     id: ir_proxy_tx
+#     remote_transmitter_id: ir_tx
+#   # IR receiver instance
+#   - platform: ir_rf_proxy
+#     name: IR Proxy Receiver
+#     id: ir_proxy_rx
+#     remote_receiver_id: ir_rx
 
 remote_receiver:
   pin: GPIO13
