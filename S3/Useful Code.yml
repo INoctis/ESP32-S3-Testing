@@ -102,8 +102,24 @@ on_...:
       - logger.log: API has stayed connected for at least 5 minutes!
 # ---------------------------------
 
+switch:
+  - platform: template
+    name: "Enable IR Receiver"
+    restore_mode: ALWAYS_ON
+    optimistic: True
+    turn_on_action:
+      then:
+        - remote_transmitter.transmit_pioneer:
+            rc_code_1: 0xA512
+            # rc_code_2: 0xA512
+            repeat:
+              times: 2
+    turn_off_action:
+      then:
+        - remote_transmitter.transmit_pioneer:
+            rc_code_1: 0xA512
 
-
+# ---------------------------------
 
 light:
   - platform: monochromatic
@@ -125,11 +141,15 @@ output:
     id: output_component2
     pin: GPIO14
 
+# ---------------------------------
+
 button:
   - platform: template
     name: "Template Button"
     on_press:
       - logger.log: Button Pressed
+
+# ---------------------------------
 
 binary_sensor:
   - platform: gpio
