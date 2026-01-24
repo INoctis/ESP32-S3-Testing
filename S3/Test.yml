@@ -1,4 +1,4 @@
-esubstitutions:
+substitutions:
   upd_frq: 60s
 
 remote_transmitter:
