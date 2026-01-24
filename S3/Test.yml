@@ -7,14 +7,7 @@ remote_transmitter:
 
 button:
   - platform: template
-    name: "Mute x1"
-    on_press:
-      - remote_transmitter.transmit_pioneer:
-          rc_code_1: 0xA512
-          # rc_code_2: 0xA512
-
-  - platform: template
-    name: "Mute x2"
+    name: "Mute"
     on_press:
       - remote_transmitter.transmit_pioneer:
           rc_code_1: 0xA512
