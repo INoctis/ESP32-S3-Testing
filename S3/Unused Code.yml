@@ -102,3 +102,44 @@ on_...:
       - logger.log: API has stayed connected for at least 5 minutes!
 # ---------------------------------
 
+light:
+  - platform: monochromatic
+    name: "Red LED"
+    output: output_component1
+    id: red_led
+
+  - platform: monochromatic
+    name: "Yellow LED"
+    output: output_component2
+    id: yellow_led
+
+output:
+  - platform: ledc
+    id: output_component1
+    pin: GPIO13
+
+  - platform: ledc
+    id: output_component2
+    pin: GPIO14
+
+button:
+  - platform: template
+    name: "Template Button"
+    on_press:
+      - logger.log: Button Pressed
+
+binary_sensor:
+  - platform: gpio
+    pin: 
+      number: GPIO47
+      mode: INPUT_PULLUP
+      inverted: True
+    name: Button
+    on_press:
+      - remote_transmitter.transmit_raw:
+          code: ""
+      - logger.log: IR Button Pressed
+      - component.update: sensor_dht11
+      - light.toggle: red_led
+      - delay: 0.5s
+      - light.toggle: yellow_led
