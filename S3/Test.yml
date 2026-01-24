@@ -1,4 +1,4 @@
-substitutions:
+esubstitutions:
   upd_frq: 60s
 
 remote_transmitter:
@@ -12,10 +12,10 @@ switch:
     optimistic: True
     turn_on_action:
       then:
-        - component.enable: IR_Receiver
+        - component.resume: IR_Receiver
     turn_off_action:
       then:
-        - component.disable: IR_Receiver
+        - component.suspend: IR_Receiver
 
 button:
   - platform: template
