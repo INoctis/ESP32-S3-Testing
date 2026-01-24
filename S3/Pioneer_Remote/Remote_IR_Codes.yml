@@ -1,0 +1,49 @@
+# Receiver = Pioneer VSX-520
+# Remote = AXD7587
+
+# ESPHome Code Format
+remote_transmitter:
+  pin: GPIO12
+  carrier_duty_percent: 50%
+
+button:
+  - platform: template
+    name: "Mute"
+    on_press:
+      - remote_transmitter.transmit_pioneer:
+          rc_code_1: 0xA512
+          # rc_code_2: 0xA512
+          repeat:
+            times: 2
+
+# Codes
+# Top Section
+power: 
+sleep: 0xA548
+source: 
+receiver: 
+prev_input: 
+next_input: 
+bd: 
+dvd: 
+tv: 
+dvr: 
+cd: 
+cd-r: 
+adapter: 
+tuner: 
+eq: 
+phase: 
+s_retriever: 
+signal_sel: 
+
+# TV Control Section
+tv_power: 0x551C
+tv_input: 0x5513
+tv_ch_up: 0x5510
+tv_ch_dwn: 0x5511
+tv_vol_up: 0x550A
+tv_vol_dwn: 0x550B
+
+
+
