@@ -5,22 +5,31 @@ remote_transmitter:
   pin: GPIO12
   carrier_duty_percent: 50%
 
-switch:
+button:
   - platform: template
-    name: "IR Demo Test"
-    restore_mode: ALWAYS_OFF
-    optimistic: True
-    turn_on_action:
-      then:
-        - remote_transmitter.transmit_pioneer:
-            rc_code_1: 0xA512
-            # rc_code_2: 0xA512
-            repeat:
-              times: 2
-    turn_off_action:
-      then:
-        - remote_transmitter.transmit_pioneer:
-            rc_code_1: 0xA512
+    name: "Mute x1"
+    on_press:
+      - remote_transmitter.transmit_pioneer:
+          rc_code_1: 0xA512
+          # rc_code_2: 0xA512
+
+  - platform: template
+    name: "Mute x2"
+    on_press:
+      - remote_transmitter.transmit_pioneer:
+          rc_code_1: 0xA512
+          repeat:
+            times: 2
+
+binary_sensor:
+  - platform: gpio
+    pin: 
+      number: GPIO47
+      mode: INPUT_PULLUP
+      inverted: True
+    name: Button
+    on_press:
+      - component.update: sensor_dht11
 
 remote_receiver:
   pin: 
