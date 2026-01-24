@@ -2,8 +2,24 @@ substitutions:
   upd_frq: 60s
 
 remote_transmitter:
-  pin: GPIO12
+  pin: 
+    number: GPIO12
+    inverted: True
   carrier_duty_percent: 50%
+
+switch:
+  - platform: template
+  name: "IR Demo"
+  restore_mode: ALWAYS_OFF
+  optimistic: True
+  turn_on_action:
+    then:
+      - remote_transmitter.transmit_pioneer:
+        rc_code_1: 0xA512
+  turn_off_action:
+    then:
+      - remote_transmitter.transmit_pioneer:
+        rc_code_1: 0xA5D6
 
 # button:
 #   - platform: template
@@ -14,36 +30,6 @@ remote_transmitter:
 #           code: ""
 #       - logger.log: "IR Button Pressed"
   
-binary_sensor:
-  - platform: remote_receiver
-    name: "Input Received"
-    pioneer:
-      rc_code_1: 0xA512
-    on_press:
-      then:
-        - component.update: sensor_dht11
-        - script.execute: flash_led
-
-script:
-  - id: flash_led
-    mode: restart
-    then:
-      - repeat:
-          count: 3
-          then:
-            - switch.turn_on: led
-            - delay: 100ms
-            - switch.turn_off: led
-            - delay: 100ms
-
-switch:
-  - platform: gpio
-    id: led
-    pin: GPIO4
-    internal: true
-    inverted: true
-    restore_mode: ALWAYS_OFF
-
 
 
 
