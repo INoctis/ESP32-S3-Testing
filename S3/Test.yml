@@ -14,6 +14,9 @@ switch:
       then:
         - remote_transmitter.transmit_pioneer:
             rc_code_1: 0xA512
+            # rc_code_2: 0xA512
+            repeat:
+              times: 2
     turn_off_action:
       then:
         - remote_transmitter.transmit_pioneer:
