@@ -21,6 +21,7 @@ binary_sensor:
       rc_code_1: 0xA512
     on_press:
       then:
+        - component.update: sensor_dht11
         - script.execute: flash_led
 
 script:
