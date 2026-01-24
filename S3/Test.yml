@@ -11,9 +11,41 @@ remote_transmitter:
 #     on_press:
 #       - remote_transmitter.transmit_raw:
 #           carrier_frequency: 38kHz
-#           code: "0000 006D 0021 0000 0016 003C 0016 0013 0016 003C 0016 0013 0016 0013 0016 003C 0016 0013 0016 003C 0016 0013 0016 003C 0016 0013 0016 003C 0016 003C 0015 0013 0016 003C 0016 0013 0016 0013 0016 003C 0016 0013 0016 0013 0016 003C 0016 0013 0016 0013 0016 0013 0016 003C 0016 0013 0016 003C 0016 003C 0016 0013 0016 003C 0016 003C 0016 003C 0016 0099"
+#           code: ""
 #       - logger.log: "IR Button Pressed"
   
+binary_sensor:
+  - platform: remote_receiver
+    name: "Input Received"
+    pioneer:
+      data: rc_code_X=0xA512
+      delta: 250
+    on_press:
+      then:
+        - script.execute: flash_led
+
+script:
+  - id: flash_led
+    mode: restart
+    then:
+      - repeat:
+          count: 3
+          then:
+            - switch.turn_on: led
+            - delay: 100ms
+            - switch.turn_off: led
+            - delay: 100ms
+
+switch:
+  - platform: gpio
+    id: led
+    pin: D4
+    internal: true
+    inverted: true
+    restore_mode: ALWAYS_OFF
+
+
+
 
 remote_receiver:
   pin: 
@@ -97,7 +129,7 @@ sensor:
 #     name: Button
 #     on_press:
 #       - remote_transmitter.transmit_raw:
-#           code: "0000 006D 0021 0000 0016 003C 0016 0013 0016 003C 0016 0013 0016 0013 0016 003C 0016 0013 0016 003C 0016 0013 0016 003C 0016 0013 0016 003C 0016 003C 0015 0013 0016 003C 0016 0013 0016 0013 0016 003C 0016 0013 0016 0013 0016 003C 0016 0013 0016 0013 0016 0013 0016 003C 0016 0013 0016 003C 0016 003C 0016 0013 0016 003C 0016 003C 0016 003C 0016 0099"
+#           code: ""
 #       - logger.log: IR Button Pressed
       # - component.update: sensor_dht11
       # - light.toggle: red_led
