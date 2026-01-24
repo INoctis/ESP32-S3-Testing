@@ -5,6 +5,18 @@ remote_transmitter:
   pin: GPIO12
   carrier_duty_percent: 50%
 
+switch:
+  - platform: template
+    name: "Enable IR Receiver"
+    restore_mode: ALWAYS_ON
+    optimistic: True
+    turn_on_action:
+      then:
+        - component.enable: IR_Receiver
+    turn_off_action:
+      then:
+        - component.disable: IR_Receiver
+
 button:
   - platform: template
     name: "Mute x1"
@@ -29,9 +41,13 @@ binary_sensor:
       inverted: True
     name: Button
     on_press:
-      - component.update: sensor_dht11
+      - remote_transmitter.transmit_pioneer:
+          rc_code_1: 0xA512
+          repeat:
+            times: 2
 
 remote_receiver:
+  id: IR_Receiver
   pin: 
     number: GPIO13
     inverted: true
