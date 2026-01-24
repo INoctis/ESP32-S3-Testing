@@ -5,18 +5,6 @@ remote_transmitter:
   pin: GPIO12
   carrier_duty_percent: 50%
 
-switch:
-  - platform: template
-    name: "Enable IR Receiver"
-    restore_mode: ALWAYS_ON
-    optimistic: True
-    turn_on_action:
-      then:
-        - component.resume: IR_Receiver
-    turn_off_action:
-      then:
-        - component.suspend: IR_Receiver
-
 button:
   - platform: template
     name: "Mute x1"
