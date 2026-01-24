@@ -7,7 +7,7 @@ remote_transmitter:
 
 switch:
   - platform: template
-    name: "IR Demo"
+    name: "IR Demo Test"
     restore_mode: ALWAYS_OFF
     optimistic: True
     turn_on_action:
