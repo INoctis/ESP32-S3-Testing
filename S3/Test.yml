@@ -38,7 +38,7 @@ script:
 switch:
   - platform: gpio
     id: led
-    pin: D4
+    pin: GPIO4
     internal: true
     inverted: true
     restore_mode: ALWAYS_OFF
