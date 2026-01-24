@@ -24,8 +24,7 @@ binary_sensor:
     on_press:
       - remote_transmitter.transmit_pioneer:
           rc_code_1: 0xA512
-          repeat:
-            times: 2
+          rc_code_2: 0xA512
 
 remote_receiver:
   id: IR_Receiver
