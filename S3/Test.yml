@@ -31,7 +31,7 @@ remote_receiver:
   pin: 
     number: GPIO13
     inverted: true
-  dump: all
+  dump: pioneer
   # Settings to optimize recognition of RF devices
   tolerance: 25%
 
