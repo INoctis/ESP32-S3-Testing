@@ -21,8 +21,8 @@ substitutions:
   # Top Section
   # VSX-520_power: 
   VSX-520_sleep: [0xA548]
-  VSX-520_source: 
-  VSX-520_receiver: 
+  # VSX-520_source: 
+  # VSX-520_receiver: 
   VSX-520_prev_input: [0xA556, 0xA5C1]
   VSX-520_next_input: [0xA555]
   VSX-520_bd: [0xA55C, 0xA5C0]
