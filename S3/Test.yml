@@ -1,5 +1,6 @@
 substitutions:
   upd_frq: 60s
+  ir_dump: "pioneer"
 
 remote_transmitter:
   pin: GPIO12
@@ -31,7 +32,7 @@ remote_receiver:
   pin: 
     number: GPIO13
     inverted: true
-  dump: pioneer
+  dump: ${ir_dump}
   # Settings to optimize recognition of RF devices
   tolerance: 25%
 
