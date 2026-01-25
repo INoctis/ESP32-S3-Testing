@@ -1,6 +1,9 @@
 substitutions:
   upd_frq: 60s
   ir_dump: "pioneer"
+  remote: "VSX-520"
+  ${remote}_mute: 0xA512
+  ir_target: "VSX-520"
 
 remote_transmitter:
   pin: GPIO12
@@ -24,8 +27,8 @@ binary_sensor:
     name: Physical Button
     on_press:
       - remote_transmitter.transmit_pioneer:
-          rc_code_1: 0xA512
-          rc_code_2: 0xA512
+          rc_code_1: ${${ir_target}_mute}
+          rc_code_2: ${${ir_target}_mute}
 
 remote_receiver:
   id: IR_Receiver
